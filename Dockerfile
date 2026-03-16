@@ -1,18 +1,23 @@
-# 1 base image (OS)
-FROM openjdk:17-jdk-alpine
+#Step 1 import Base Image
 
-# 2 working directory for the app
-WORKDIR /app
+FROM openjdk:26-rc-jdk-oraclelinux9
 
-# 3 copy the code from your HOST to your Container (working dir)
+# Step 2 Create Work Directory
+
+WORKDIR /application-code
+
+#Step 3 Copy Code and Tips File
+
 COPY src/Main.java Main.java
 COPY tips.txt tips.txt
 
-# 4 Run the commands to install libs or to compile code
+# Step 4 Run Commands
+
 RUN javac Main.java
 
-# 5 Expose the port
-EXPOSE 8080
+# Step 5 Keep it running 
 
-# 6 Serve the app / Keep it running
-CMD ["java", "Main"]
+CMD ["java","Main"]
+
+
+
